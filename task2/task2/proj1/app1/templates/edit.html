@@ -1,0 +1,56 @@
+{% load static %}
+<html >
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Dashboard</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="{% static 'global.css' %}">
+    </head>
+
+
+    <body>
+        {% if messages %}
+            <div class="container-fluid p-4">
+                <div class="row">
+                    <div class="col-12">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+  
+        <div class="container-fluid p-4 d-flex justify-content-between align-items-center flex-wrap">
+            <h3 class="mb-0">Update Form Request</h3>
+            <button class="btn btn-outline-secondary btn-sm">
+                <a href="{% url 'home' %}" class="text-dark text-decoration-none">Return to Dashboard</a>
+            </button>
+        </div> 
+
+        <div class="container mt-4">
+            <div class="row justify-content-left">
+                <div class="col-12 col-md-8 col-lg-6">
+                    {% if success %}
+                        <div class="alert alert-success">
+                            <p>Request submitted successfully</p>
+                        </div>
+                    {% else %}
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            <div class="mb-3" class="text-dark">
+                                {{ form.as_p }}
+                            </div>
+                            <button type="submit" value="update" class="main-button">Update</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
