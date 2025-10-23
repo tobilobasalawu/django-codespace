@@ -1,0 +1,17 @@
+<p>Masons and Thompson Letting Agency</p>
+
+<p>
+    {% if success == True %}
+        Form has been submitted
+    {% else %}
+        <form method=POST>
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <input type="submit" value="submit">
+        </form>
+    {% endif %}
+</p>
+
+<a href="{% url 'home' %}">HOME</a>

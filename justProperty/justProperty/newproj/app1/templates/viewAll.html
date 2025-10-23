@@ -1,0 +1,29 @@
+<p>
+    <h1>PROPERTIES</h1>
+
+    <table border="3">
+        <tr>
+            <td>PropertyID</td>
+            <td>PropertyHouseNumber</td>
+            <td>PropertyPostcode</td>
+            <!--<td>PropertyTypeID</td>!-->
+            <td>Bedrooms</td>
+            <td>EDIT?</td>
+            <td>DELETE?</td>
+        </tr>
+        {% for property in propertyList %}
+            <tr>
+                <td>{{property.PropertyID}}</td>
+                <td>{{property.PropertyHouseNumber}}</td>
+                <td>{{property.PropertyPostcode}}</td>
+                <!--<td>{{property.PropertyTypeID}}</td>!-->
+                <td>{{property.Bedrooms}}</td>
+                <td><a href="{% url 'editProperty' property.PropertyID %}">EDIT</a></td>
+                <td><a href="{% url 'deleteProperty' property.PropertyID %}">DELETE</a></td>
+                
+            </tr>
+        {% endfor %}
+    </table>
+</p>
+
+<a href="{% url 'home' %}">HOME</a>
